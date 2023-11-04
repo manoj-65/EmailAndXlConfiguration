@@ -2,6 +2,7 @@ package com.ty.webapp.controller;
 
 import java.io.IOException;
 import java.io.OutputStream;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -46,5 +47,18 @@ public class TimeSheetController {
 		infoList.add(new Info("Ram", 25));
 		infoList.add(new Info("Ravi", 35));
 		return infoList;
+	}
+
+	public static String convert(LocalDateTime of) {
+		// To Get the Date in a format of dd-month-yyyy
+		String time = "" + of.getDayOfMonth() + " - " + of.getMonth() + " - " + of.getYear() + " ";
+		int hour = of.getHour();
+		// Logic to convert time in 12 hour format
+		if (hour > 12) {
+			time += (hour - 12) + ":" + of.getMinute() + " PM.";
+		} else {
+			time += hour + ":" + of.getMinute() + " AM.";
+		}
+		return time;
 	}
 }
